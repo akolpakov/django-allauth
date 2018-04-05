@@ -1,6 +1,10 @@
+from django.conf import settings
 from allauth.socialaccount import app_settings
 from allauth.socialaccount.providers.base import ProviderAccount
 from allauth.socialaccount.providers.oauth2.provider import OAuth2Provider
+
+API_VERSION = getattr(settings, 'SOCIALACCOUNT_PROVIDERS', {}).get(
+    'vk', {}).get('VERSION', '5.0')
 
 
 class VKAccount(ProviderAccount):

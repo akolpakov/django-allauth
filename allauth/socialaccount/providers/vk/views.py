@@ -6,7 +6,7 @@ from allauth.socialaccount.providers.oauth2.views import (
     OAuth2LoginView,
 )
 
-from .provider import VKProvider
+from .provider import VKProvider, API_VERSION
 
 
 USER_FIELDS = ['first_name',
@@ -42,7 +42,7 @@ class VKOAuth2Adapter(OAuth2Adapter):
     def complete_login(self, request, app, token, **kwargs):
         uid = kwargs['response'].get('user_id')
         params = {
-            'v': '3.0',
+            'v': API_VERSION,
             'access_token': token.token,
             'fields': ','.join(USER_FIELDS),
         }
